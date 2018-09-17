@@ -7,7 +7,14 @@ public class Card {
 	
 	//Constructor
 	public Card(Suit sIn, int valIn) {
-		this.value = valIn;
+		
+		if(value>=1 && value<=13) {
+			this.value = valIn;
+		}
+		else {
+			System.err.println(value+ "is not a valid card value");
+			System.exit(1);
+		}
 		this.suit = sIn;
 	}
 	

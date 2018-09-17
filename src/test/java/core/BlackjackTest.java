@@ -30,6 +30,13 @@ public class BlackjackTest extends TestCase{
 		assertEquals(52, deck.getNumCards());
 	}
 	
+	//To test if a card is removed after dealing it to a player
+	public void testDeckChanges() {
+		Deck deck = new Deck();
+		deck.dealNextCard();
+		assertEquals(51, deck.getNumCards());
+	}
+	
 	public void testPlayer() {
 		Player player = new Player("Player1");
 		assertEquals("Player1",player.getName());
@@ -49,5 +56,7 @@ public class BlackjackTest extends TestCase{
 		player1.addCard(queenofDiamonds);
 		assertEquals(21,player1.getHandTotal());
 	}
+	
+	
 	
 }

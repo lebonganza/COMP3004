@@ -31,10 +31,40 @@ public class Player {
 		
 		for(int i=0;i<this.numCards;i++) {
 			cardValue = this.hand[i].getValue();
-			total+=cardValue;
+			if(cardValue==1) {
+				numAces++;
+				total+=11;
+			}else if(cardValue>10) {
+				total+=10;
+			}else {
+				total +=cardValue;
+			}
+			
+			/*while the player has one or more aces and the total of his hand is greater than 21
+			 * the value of an ace becomes 1
+			 */
+			while(numAces>0 && total>21) {
+				total-=10;
+				numAces--;
+			}
 		}
 		
 		return total;
 		
 	}
+	
+	public void printHand(boolean showFirstCard) {
+		System.out.println(this.name+ "'s cards:\n");
+		for(int i=0;i<this.numCards;i++) {
+			if(i==0 && !showFirstCard) {
+				System.out.println("[Hidden]");
+			}
+			else {
+				System.out.println(" "+this.hand[i].toString()+ "\n");
+			}
+		}
+	}
+	
+	
+	
 }

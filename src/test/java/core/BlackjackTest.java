@@ -10,6 +10,7 @@ public class BlackjackTest extends TestCase{
 	Card aceofHearts = new Card(Suit.H,1);
 	Card jackofSpades = new Card(Suit.S,10);
 	
+	
 	public void testCard() {
 		
 		assertEquals(5,fiveofClubs.getValue());
@@ -27,5 +28,17 @@ public class BlackjackTest extends TestCase{
 		Deck deck = new Deck();
 		
 		assertEquals(52, deck.getNumCards());
+	}
+	
+	public void testPlayer() {
+		Player player = new Player("Player1");
+		assertEquals("Player1",player.getName());
+	}
+	
+	public void testPlayersHand() {
+		player1.addCard(aceofHearts);
+		player1.addCard(fiveofClubs);
+		player1.addCard(jackofSpades);
+		assertEquals(16,player1.getHandTotal());
 	}
 }

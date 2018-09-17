@@ -36,6 +36,7 @@ public class BlackjackTest extends TestCase{
 	}
 	
 	public void testPlayersHand() {
+		Player player1 = new Player("Player2");
 		player1.addCard(aceofHearts);
 		player1.addCard(fiveofClubs);
 		player1.addCard(jackofSpades);

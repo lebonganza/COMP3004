@@ -42,4 +42,11 @@ public class BlackjackTest extends TestCase{
 		player1.addCard(jackofSpades);
 		assertEquals(16,player1.getHandTotal());
 	}
+	
+	public void testAcesValue() {
+		Player player1 = new Player("Player2");
+		player1.addCard(aceofHearts);
+		player1.addCard(queenofDiamonds);
+		assertEquals(12,player1.getHandTotal());
+	}
 }

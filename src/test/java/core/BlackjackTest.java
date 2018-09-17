@@ -38,9 +38,10 @@ public class BlackjackTest extends TestCase{
 	}
 	
 	public void testShuffle() {
-		Deck unshuffled = new Deck();
-		Deck shuffled = unshuffled.shuffle();
-		assertSame(unshuffled,shuffled);
+		Deck deck = new Deck();
+		Card preshuffle = deck.getTop();
+		deck.shuffle();
+		assertEquals(preshuffle,deck.getTop());
 	}
 	
 	

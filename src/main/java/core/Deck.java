@@ -1,5 +1,7 @@
 package core;
 
+import java.util.Random;
+
 public class Deck {
 	
 	private Card[] cards;
@@ -36,4 +38,22 @@ public class Deck {
 		this.numCards--;
 		return top;
 	}
+	
+	public void shuffle() {
+		Random rand = new Random();
+		Card temp;
+		int j;
+		for(int i=0;i<this.numCards;i++) {
+			
+			j = rand.nextInt(this.numCards);
+			temp = this.cards[i];
+			this.cards[j] = temp;
+		}
+	}
+	
+	public Card getTop() {
+		return cards[0];
+	}
+	
+	
 }

@@ -37,6 +37,13 @@ public class BlackjackTest extends TestCase{
 		assertEquals(51, deck.getNumCards());
 	}
 	
+	public void testShuffle() {
+		Deck unshuffled = new Deck();
+		Deck shuffled = unshuffled.shuffle();
+		assertSame(unshuffled,shuffled);
+	}
+	
+	
 	public void testAddCardToPlayer() {
 		Deck deck = new Deck();
 		Card  top = deck.dealNextCard();

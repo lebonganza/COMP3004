@@ -37,6 +37,14 @@ public class BlackjackTest extends TestCase{
 		assertEquals(51, deck.getNumCards());
 	}
 	
+	public void testAddCardToPlayer() {
+		Deck deck = new Deck();
+		Card  top = deck.dealNextCard();
+		Player player = new Player("Player1");
+		player.addCard(top);
+		assertEquals(player.getHandTotal(), top.getValue());
+	}
+	
 	public void testPlayer() {
 		Player player = new Player("Player1");
 		assertEquals("Player1",player.getName());

@@ -24,4 +24,16 @@ public class Deck {
 	public int getNumCards() {
 		return this.numCards;
 	}
+	
+	public Card dealNextCard() {
+		Card top = this.cards[0];
+		//Shift all cards to the left because the front card was removed
+		for(int i=1;i<cards.length;i++) {
+			cards[i-1] = cards[i];
+		}
+		//set  the last duplicate card to null
+		this.cards[this.numCards-1] = null;
+		this.numCards--;
+		return top;
+	}
 }

@@ -5,7 +5,7 @@ public class Card {
 	private int value;
 	private Suit suit;
 	
-	//Constructor
+	//Constructor 1
 	public Card(Suit sIn, int valIn) {
 		
 		this.suit = sIn;
@@ -18,6 +18,53 @@ public class Card {
 		}
 	}
 	
+	public Card(Suit aSuit,String value){
+			
+			int val=0;
+			switch(value) {
+				case "2":
+					val = 2;
+					break;
+				case "3":
+					val = 3;
+					break;
+				case "4":
+					val = 4;
+					break;
+				case "5":
+					val = 5;
+					break;
+				case "6":
+					val = 6;
+					break;
+				case "7":
+					val = 7;
+					break;
+				case "8":
+					val = 8;
+					break;
+				case "9":
+					val = 9;
+					break;
+				case "10":
+					val = 10;
+					break;
+				case "J":
+					val = 11;
+					break;
+				case "Q":
+					val = 12;
+					break;
+				case "K":
+					val = 13;
+					break;
+				case "A":
+					val = 1;
+					break;
+			}
+			this.value = val;
+			this.suit = aSuit;
+		}
 	public int getValue() {
 		return this.value;
 	}

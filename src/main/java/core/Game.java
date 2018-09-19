@@ -98,6 +98,90 @@ public class Game {
 				System.out.println("--The house win!!!--");
 			}
 		}
+		
+		else if(mode.compareToIgnoreCase("i")==0){
+					
+			String[] arr = this.promptUser();
+			int i=0;
+			Player player = new Player("Player");
+			Player dealer = new Player("Dealer");
+			
+			//Turn array of string into a deck of cards
+			Deck deck = new Deck(this.arrToDeck(arr));
+			
+			//Array of commands
+			char commands[] = this.getCommands(arr);
+
+			player.addCard(deck.dealNextCard());		
+			player.addCard(deck.dealNextCard());
+			
+			dealer.addCard(deck.dealNextCard());
+			dealer.addCard(deck.dealNextCard());
+			
+			System.out.println("Cards are dealt\n");
+			player.printHand(true);
+			dealer.printHand(false);
+			System.out.println("\n");
+			
+			boolean playerDone = false;
+			boolean dealerDone = false;
+			String ans;
+			
+			while(!playerDone || !dealerDone ) {
+				int turn = 0;
+				if(!playerDone) {
+					
+					ans = Character.toString(commands[turn]);
+					if(ans.compareToIgnoreCase("H")==0) {
+						System.out.println("--Player Hits!--\n");
+						playerDone = !player.addCard(deck.dealNextCard());
+						player.printHand(true);
+					}else {
+						playerDone = true;
+					}
+					turn++;
+				}
+				
+				if(!dealerDone) {
+					if(dealer.getHandTotal()<17) {
+						System.out.println(dealer.getHandTotal());
+						System.out.println("--Dealer hits--\n");
+						dealerDone = !dealer.addCard(deck.dealNextCard());
+						dealer.printHand(true);
+					}else {
+						System.out.println("--The dealer stays--\n");
+						dealer.printHand(true);
+						dealerDone = true;
+						}
+				}
+				
+				if(dealer.getHandTotal() == 21 && player.getHandTotal()==21){
+					dealerDone = true;
+					playerDone = true;
+				}
+				System.out.println();
+				
+			}
+			player.printHand(true);
+			dealer.printHand(true);
+			
+			int playerTotal = player.getHandTotal();
+			int dealerTotal = dealer.getHandTotal();
+			
+			if(playerTotal > dealerTotal && playerTotal<=21 || dealerTotal >21) {
+				System.out.println("--Your Hand total: "+player.getHandTotal());
+				System.out.println("--Dealer's Hand total: "+dealer.getHandTotal());
+				System.out.println("--You win!!!--");
+			}else if(playerTotal ==21 && dealerTotal == 21) {
+				System.out.println("--Dealer's Hand total: "+dealer.getHandTotal());
+				System.out.println("--Your Hand total: "+player.getHandTotal());
+				System.out.println("--The house win!!!--");
+			}else {
+				System.out.println("--Dealer's Hand total: "+dealer.getHandTotal());
+				System.out.println("--Your Hand total: "+player.getHandTotal());
+				System.out.println("--The house win!!!--");
+			}
+		}
 	}
 	
 	
@@ -120,6 +204,7 @@ public class Game {
 		}catch(Exception e){
 			System.out.println("File not found");
 		}
+		x.close();
 		return arr;
 			
 	}

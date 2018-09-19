@@ -74,7 +74,10 @@ public class Player {
 	}
 	
 	public boolean hit(Deck d) {
+		System.out.printf("[%s Hits]\n",this.getName());
 		return this.addCard(d.dealNextCard());
 	}
-	
+	public void stand() {
+		System.out.printf("[%s stands]\n",this.getName());
+	}
 }

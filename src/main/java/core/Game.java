@@ -14,7 +14,13 @@ public class Game {
 		this.dealer = dealer;
 	}
 	
-	public void initialize(){
+	public void initialize(int status){
+		
+		if(status==1) {
+			mode = "c";
+			return;
+		}
+		
 		System.out.println("******************Welcome to BlackJack Game!********************\n\n");
 		System.out.print("Enter c for console mode  or i for fileInput mode: ");
 		mode = sc.next();
@@ -25,7 +31,7 @@ public class Game {
 		}
 	}
 	
-	public void start() {
+	public void start(int status ) {
 		if(mode.compareToIgnoreCase("c")==0){		
 			
 			Deck deck = new Deck();		
@@ -40,6 +46,9 @@ public class Game {
 			player.printHand(true);
 			dealer.printHand(false);
 			System.out.println("\n");
+			
+			if(status==1) return;
+			
 			
 			boolean playerDone = false;
 			boolean dealerDone = false;
@@ -63,11 +72,10 @@ public class Game {
 				
 				if(!dealerDone) {
 					if(dealer.getHandTotal()<17) {
-						System.out.println("[Dealer hits]\n");
 						dealerDone = !dealer.hit(deck);
 						dealer.printHand(true);
 					}else {
-						System.out.println("[The dealer stays]\n");
+						dealer.stand();
 						dealer.printHand(true);
 						dealerDone = true;
 						}
@@ -133,23 +141,21 @@ public class Game {
 					
 					ans = Character.toString(commands[turn]);
 					if(ans.compareToIgnoreCase("H")==0) {
-						System.out.println("--Player Hits!--\n");
-						playerDone = !player.addCard(deck.dealNextCard());
+						playerDone = !player.hit(deck);
 						player.printHand(true);
 					}else {
+						player.stand();
 						playerDone = true;
 					}
 					turn++;
 				}
 				
 				if(!dealerDone) {
-					if(dealer.getHandTotal()<17) {
-						System.out.println(dealer.getHandTotal());
-						System.out.println("--Dealer hits--\n");
-						dealerDone = !dealer.addCard(deck.dealNextCard());
+					if(dealer.getHandTotal()<17) {;
+						dealerDone = !dealer.hit(deck);
 						dealer.printHand(true);
 					}else {
-						System.out.println("--The dealer stays--\n");
+						dealer.stand();
 						dealer.printHand(true);
 						dealerDone = true;
 						}
@@ -184,7 +190,29 @@ public class Game {
 		}
 	}
 	
-	
+	public int checkWinner(Player p1,Player p2) {
+		int winner;
+		int playerTotal = p1.getHandTotal();
+		int dealerTotal = p2.getHandTotal();
+		
+		if(playerTotal > dealerTotal && playerTotal<=21 || dealerTotal >21) {
+			System.out.println("--Your Hand total: "+p1.getHandTotal());
+			System.out.println("--Dealer's Hand total: "+p2.getHandTotal());
+			System.out.println("--You win!!!--");
+			winner = 1;
+		}else if(playerTotal ==21 && dealerTotal == 21) {
+			System.out.println("--Dealer's Hand total: "+p1.getHandTotal());
+			System.out.println("--Your Hand total: "+p2.getHandTotal());
+			System.out.println("--The house win!!!--");
+			winner = 0;
+		}else {
+			System.out.println("--Dealer's Hand total: "+p1.getHandTotal());
+			System.out.println("--Your Hand total: "+p2.getHandTotal());
+			System.out.println("--The house win!!!--");
+			winner = 0;
+		}
+		return winner;
+	}
 //Prompt user for file input
 	public String[] promptUser(){
 		System.out.println("Please enter file name with .txt extension");
@@ -267,4 +295,6 @@ public class Game {
 		}
 		return commands;
 	}
+	
+
 }

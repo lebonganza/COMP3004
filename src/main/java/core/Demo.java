@@ -8,8 +8,8 @@ public class Demo {
 		Player dealer = new Player("Dealer");
 		Game game1 = new Game(player,dealer);
 		
-		game1.initialize();
-		game1.start();
+		game1.initialize(0);
+		game1.start(0);
 		
 		
 	}

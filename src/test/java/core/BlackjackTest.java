@@ -91,27 +91,6 @@ public class BlackjackTest extends TestCase{
 		
 	}
 	
-	/*public void testGameInitialisation() {
-		Player player = new Player("Player");
-		Player dealer = new Player("Dealer");
-		Game game = new Game(player,dealer);		
-		String res = null;
-	    PrintStream originalOut = System.out;
-	    try {
-	        ByteArrayOutputStream os = new ByteArrayOutputStream(100);
-	        PrintStream capture = new PrintStream(os);
-	        
-	        System.setOut(capture);
-	        game.initialize();
-	        System.exit(1);
-	        capture.flush();
-	        res = os.toString();
-	    } finally {
-	        System.setOut(originalOut);
-	    }
-	    
-	    assertTrue(res != null);
-	}*/
 	
 	public void testNumVisibleCards() {
 		Player player = new Player("Player");

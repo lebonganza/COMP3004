@@ -25,10 +25,11 @@ public class Game {
 		System.out.print("Enter c for console mode  or i for fileInput mode: ");
 		mode = sc.next();
 		while(mode.compareToIgnoreCase("c")!=0 && mode.compareToIgnoreCase("i")!=0){
-			System.out.println("Invalid mode!");
-			System.out.print("Enter c for console or I for file input:");
+			System.out.println("/!\\Invalid mode!");
+			System.out.print("Enter c for console or i for file input:");
 			mode = sc.next();
 		}
+		System.out.println("\n");
 	}
 	
 	public void start(int status ) {
@@ -42,7 +43,7 @@ public class Game {
 			dealer.addCard(deck.dealNextCard());
 			dealer.addCard(deck.dealNextCard());
 			
-			System.out.println("Cards are dealt\n");
+			System.out.println("\n--Cards are dealt--\n");
 			player.printHand(true);
 			dealer.printHand(false);
 			System.out.println("\n");
@@ -110,7 +111,6 @@ public class Game {
 		else if(mode.compareToIgnoreCase("i")==0){
 					
 			String[] arr = this.promptUser();
-			int i=0;
 			Player player = new Player("Player");
 			Player dealer = new Player("Dealer");
 			
@@ -126,7 +126,7 @@ public class Game {
 			dealer.addCard(deck.dealNextCard());
 			dealer.addCard(deck.dealNextCard());
 			
-			System.out.println("Cards are dealt\n");
+			System.out.println("\n--Cards are dealt--\n");
 			player.printHand(true);
 			dealer.printHand(false);
 			System.out.println("\n");
@@ -215,7 +215,7 @@ public class Game {
 	}
 //Prompt user for file input
 	public String[] promptUser(){
-		System.out.println("Please enter file name with .txt extension");
+		System.out.println("Please enter file name with .txt extension(If your not using an IDE: )");
 		Scanner x = new Scanner (System.in);
 		String fileName = x.nextLine();
 		String arr[] = new String[52];

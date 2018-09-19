@@ -53,7 +53,8 @@ public class Player {
 		
 	}
 	
-	public void printHand(boolean showFirstCard) {
+	public int printHand(boolean showFirstCard) {
+		int numVisibleCards = 0;
 		System.out.println(this.name+ "'s cards:\n");
 		for(int i=0;i<this.numCards;i++) {
 			if(i==0 && !showFirstCard) {
@@ -61,8 +62,10 @@ public class Player {
 			}
 			else {
 				System.out.println(" "+this.hand[i].toString()+ "\n");
+				numVisibleCards++;
 			}
 		}
+		return numVisibleCards;
 	}
 	
 	

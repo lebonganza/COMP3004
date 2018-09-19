@@ -75,8 +75,9 @@ public class BlackjackTest extends TestCase{
 	}
 	
 	public void testGameInitialisation() {
-		
-		Game game = new Game();		
+		Player player = new Player("Player");
+		Player dealer = new Player("Dealer");
+		Game game = new Game(player,dealer);		
 		String res = null;
 	    PrintStream originalOut = System.out;
 	    try {
@@ -97,10 +98,10 @@ public class BlackjackTest extends TestCase{
 		Player player = new Player("Player");
 		Player dealer = new Player("Dealer");
 		Game game = new Game(player,dealer);
-		game.initialise();
+		game.initialize();
 		game.start();
-		assertEquals(2,player.numVisibleCards());
-		assertEquals(1,dealer.numVisibleCards());
+		assertEquals(2,player.printHand(true));
+		assertEquals(1,dealer.printHand(false));
 		
 	}
 	

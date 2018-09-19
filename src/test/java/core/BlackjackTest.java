@@ -39,10 +39,10 @@ public class BlackjackTest extends TestCase{
 	}
 	
 	public void testShuffle() {
-		Deck deck = new Deck();
-		Card preshuffle = deck.getTop();
-		deck.shuffle();
-		assertEquals(preshuffle,deck.getTop());
+		Deck deck1 = new Deck();
+		Deck deck2 = new Deck();
+		deck1.shuffle();
+		assertFalse(deck1.equals(deck2));
 	}
 	
 	
@@ -98,11 +98,18 @@ public class BlackjackTest extends TestCase{
 		Player player = new Player("Player");
 		Player dealer = new Player("Dealer");
 		Game game = new Game(player,dealer);
-		game.initialize();
+		game.initialize();		
 		game.start();
 		assertEquals(2,player.printHand(true));
 		assertEquals(1,dealer.printHand(false));
 		
 	}
-	
+	public void testPlayerHit() {
+		Player player = new Player("Player");
+		Player dealer = new Player("Dealer");
+		Game game = new Game(player,dealer);
+		game.initialize();
+		game.start();
+		
+	}
 }

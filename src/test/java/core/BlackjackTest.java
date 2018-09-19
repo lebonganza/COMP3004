@@ -93,5 +93,15 @@ public class BlackjackTest extends TestCase{
 	    assertTrue(res != null);
 	}
 	
+	public void testNumVisibleCards() {
+		Player player = new Player("Player");
+		Player dealer = new Player("Dealer");
+		Game game = new Game(player,dealer);
+		game.initialise();
+		game.start();
+		assertEquals(2,player.numVisibleCards());
+		assertEquals(1,dealer.numVisibleCards());
+		
+	}
 	
 }

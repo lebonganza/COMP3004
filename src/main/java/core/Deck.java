@@ -23,6 +23,10 @@ public class Deck {
 		}
 	}
 	
+	public Deck(Card[] arr) {
+		this.cards = arr;
+	}
+	
 	public int getNumCards() {
 		return this.numCards;
 	}

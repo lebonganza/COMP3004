@@ -73,6 +73,11 @@ public class BlackjackTest extends TestCase{
 		assertEquals(21,player1.getHandTotal());
 	}
 	
+	public void testGameInitialisation() {
+		
+		Game game = new Game();
+		game.inittiialize();
+	}
 	
 	
 }

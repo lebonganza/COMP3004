@@ -73,6 +73,8 @@ public class Player {
 		return numVisibleCards;
 	}
 	
-	
+	public boolean hit(Deck d) {
+		return this.addCard(d.dealNextCard());
+	}
 	
 }

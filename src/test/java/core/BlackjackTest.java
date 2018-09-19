@@ -125,12 +125,18 @@ public class BlackjackTest extends TestCase{
 	public void testPlayerHit() {
 		Player player = new Player("Player");
 		Player dealer = new Player("Dealer");
+		Deck deck = new Deck();
 		
+		//test if a player can hit
 		int totalbeforeHit = player.getHandTotal();
-		player.hit();
+		player.hit(deck);
 		int totalafterHit = player.getHandTotal();
-		
 		assertFalse(totalafterHit==totalbeforeHit);
 		
+		//test if a dealer can hit
+		int totalbeforeHit2 = player.getHandTotal();
+		dealer.hit(deck);
+		int totalafterHit2 = player.getHandTotal();
+		assertFalse(totalafterHit2==totalbeforeHit2);
 	}
 }

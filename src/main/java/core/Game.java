@@ -54,7 +54,7 @@ public class Game {
 					System.out.println();
 					
 					if(ans.compareToIgnoreCase("H")==0) {
-						playerDone = !player.addCard(deck.dealNextCard());
+						playerDone = !player.hit(deck);
 						player.printHand(true);
 					}else {
 						playerDone = true;
@@ -64,7 +64,7 @@ public class Game {
 				if(!dealerDone) {
 					if(dealer.getHandTotal()<17) {
 						System.out.println("[Dealer hits]\n");
-						dealerDone = !dealer.addCard(deck.dealNextCard());
+						dealerDone = !dealer.hit(deck);
 						dealer.printHand(true);
 					}else {
 						System.out.println("[The dealer stays]\n");
@@ -98,5 +98,87 @@ public class Game {
 				System.out.println("--The house win!!!--");
 			}
 		}
+	}
+	
+	
+//Prompt user for file input
+	public String[] promptUser(){
+		System.out.println("Please enter file name with .txt extension");
+		Scanner x = new Scanner (System.in);
+		String fileName = x.nextLine();
+		String arr[] = new String[52];
+		int c = 0;
+		try{
+			URL path = Game.class.getResource(fileName);
+			File f = new File(path.getFile());
+			Scanner sc = new Scanner(f);
+			while(sc.hasNext()){
+			arr[c] = sc.next().replaceAll("\\s+","");
+			c++;
+			}
+			sc.close();
+		}catch(Exception e){
+			System.out.println("File not found");
+		}
+		return arr;
+			
+	}
+	
+	//Convert 2 characters of a string int0 a card
+	public Card toCard(String in){
+		
+		char s = in.charAt(0);
+
+		Suit suit = null;
+		switch(s){
+			case 'C':
+				suit = Suit.values()[0];
+				break;
+			case 'D':
+				suit = Suit.values()[1];
+				break;
+			case 'H':
+				suit = Suit.values()[3];
+				break;
+			case 'S':
+				suit = Suit.values()[2];
+				break;
+			
+		}
+
+		String value = Character.toString(in.charAt(1));
+		Card card = new Card(suit,value);
+		
+		return card;
+	}
+	
+	//Convert a string array to an array of decks
+	public Card[] arrToDeck(String[] arr){
+		int i=0;
+		int j=0;
+		Card deck[] = new Card[52];
+		while(arr[i]!=null){
+			if(arr[i].length()==2){
+				deck[j] = this.toCard(arr[i]);
+				j++;
+			}
+			i++;			
+		}
+		return deck;
+	}
+	
+	//Get commands from the file input
+	public char[] getCommands(String[] arr){
+		int i=0;
+		int j=0;
+		char commands[] = new char[52];
+		while(arr[i]!=(null)){
+			if(arr[i].length()==1){
+				commands[j] = arr[i].charAt(0);
+				j++;
+			}
+			i++;			
+		}
+		return commands;
 	}
 }

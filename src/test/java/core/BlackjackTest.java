@@ -10,7 +10,7 @@ public class BlackjackTest extends TestCase{
 	Card queenofDiamonds = new Card(Suit.D,10);
 	Card aceofHearts = new Card(Suit.H,1);
 	Card jackofSpades = new Card(Suit.S,10);
-	
+	Card aceofSpades = new Card(Suit.S,1);
 	
 	public void testCard() {
 		
@@ -68,10 +68,28 @@ public class BlackjackTest extends TestCase{
 	}
 	
 	public void testAcesValue() {
-		Player player1 = new Player("Player2");
+		Player player1 = new Player("Player1");
 		player1.addCard(aceofHearts);
 		player1.addCard(queenofDiamonds);
+		
+		Player player2 = new Player("Player2");
+		player2.addCard(aceofHearts);
+		player2.addCard(queenofDiamonds);
+		player2.addCard(fiveofClubs);
+		
 		assertEquals(21,player1.getHandTotal());
+		assertEquals(16,player2.getHandTotal());
+		
+		player1.addCard(aceofSpades);
+		assertEquals(12,player1.getHandTotal());
+		
+		Player player3 = new Player("Player3");
+		player3.addCard(aceofSpades);
+		player3.addCard(aceofHearts);
+		
+		assertEquals(12,player3.getHandTotal());
+		
+		
 	}
 	
 	public void testGameInitialisation() {
@@ -107,9 +125,12 @@ public class BlackjackTest extends TestCase{
 	public void testPlayerHit() {
 		Player player = new Player("Player");
 		Player dealer = new Player("Dealer");
-		Game game = new Game(player,dealer);
-		game.initialize();
-		game.start();
+		
+		int totalbeforeHit = player.getHandTotal();
+		player.hit();
+		int totalafterHit = player.getHandTotal();
+		
+		assertFalse(totalafterHit==totalbeforeHit);
 		
 	}
 }

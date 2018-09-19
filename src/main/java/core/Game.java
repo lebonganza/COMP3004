@@ -63,11 +63,12 @@ public class Game {
 				
 				if(!dealerDone) {
 					if(dealer.getHandTotal()<17) {
-						System.out.println("Dealer hits\n");
+						System.out.println("[Dealer hits]\n");
 						dealerDone = !dealer.addCard(deck.dealNextCard());
-						dealer.printHand(false);
+						dealer.printHand(true);
 					}else {
-						System.out.println("The dealer stays\n");
+						System.out.println("[The dealer stays]\n");
+						dealer.printHand(true);
 						dealerDone = true;
 						}
 				}
@@ -84,9 +85,17 @@ public class Game {
 			int dealerTotal = dealer.getHandTotal();
 			
 			if(playerTotal > dealerTotal && playerTotal<=21 || dealerTotal >21) {
-				System.out.println("You win!!!");
+				System.out.println("--Your Hand total: "+player.getHandTotal());
+				System.out.println("--Dealer's Hand total: "+dealer.getHandTotal());
+				System.out.println("--You win!!!--");
+			}else if(playerTotal ==21 && dealerTotal == 21) {
+				System.out.println("--Dealer's Hand total: "+dealer.getHandTotal());
+				System.out.println("--Your Hand total: "+player.getHandTotal());
+				System.out.println("--The house win!!!--");
 			}else {
-				System.out.println("The house win!!!");
+				System.out.println("--Dealer's Hand total: "+dealer.getHandTotal());
+				System.out.println("--Your Hand total: "+player.getHandTotal());
+				System.out.println("--The house win!!!--");
 			}
 		}
 	}

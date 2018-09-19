@@ -139,4 +139,13 @@ public class BlackjackTest extends TestCase{
 		int totalafterHit2 = player.getHandTotal();
 		assertFalse(totalafterHit2==totalbeforeHit2);
 	}
+	
+	public void testWinner() {
+		Player player = new Player("Player");
+		Player dealer = new Player("Dealer");
+		Game game = new Game(player,dealer);
+		
+		//returns 1 if the player won and 0 otherwise
+		int winner = game.checkWinner();
+	}
 }

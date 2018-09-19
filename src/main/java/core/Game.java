@@ -202,7 +202,8 @@ public class Game {
 			}
 			sc.close();
 		}catch(Exception e){
-			System.out.println("File not found");
+			System.out.println("/!\\File not found");
+			System.exit(1);
 		}
 		x.close();
 		return arr;

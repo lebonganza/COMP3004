@@ -24,7 +24,12 @@ public class Deck {
 	}
 	
 	public Deck(Card[] arr) {
+		int i=0;
+		while(arr[i]!=null){
+			i++;
+		}
 		this.cards = arr;
+		numCards = i;
 	}
 	
 	public int getNumCards() {
